@@ -1,6 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class UserProfile(models.Model):
+	userprofile = models.OneToOneField(User)
+	mobile = models.IntegerField()
+	address = models.CharField(max_length = 300)
+	family_member = models.IntegerField()
+	family_children = models.IntegerField()
+
 class View(models.Model):
 	userview = models.ForeignKey(User,related_name = 'views') 
 	view = models.CharField(max_length = 200)

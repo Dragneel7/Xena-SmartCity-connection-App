@@ -1,4 +1,12 @@
 {% extends 'xena/base.html' %}
 {% block content %}
-        <h1>Welcome {{ username }}</h1>
+
+	<a href = "{% url 'xena:logout' %}">Logout</a>
+	<h1>Welcome to Xena:The Smart City </h1>
+	<h2>All your needs at a mail away
+        <h3>Hello {{ username }}</h3>
+	<form method = "POST" action = "/user/" >{% csrf_token %}
+		{{ form.as_p }}
+		<button type = "submit"> Submit Info </button>
+	</form>
 {% endblock content %}
