@@ -1,4 +1,28 @@
 {% extends 'xena/base.html' %}
 {% block content %}
-	<h2>ThankYOU</h2>
+{% load static %}
+	<script src="{% static "xena/home.js" %}"></script>
+	<img src = "{% static "xena/user.jpg" %}" alt = "User Profile Photo" />
+	<a href = "{% url 'xena:logout' %}">Logout</a>
+	<div class = "user-info">
+		{{ user.firstname }} {{ user.lastname}}
+		{{ user.address }}		
+	</div>
+	<div class  = "common-feeds">
+		<ul>
+			{% for view in views %}
+				<li>{{ view }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class = "user-feeds">
+		<div class = "personal-feeds">
+			<form method = "POST">
+				{{ view_form.as_p }}		
+		</div>
+		<div class = "community-feeds">
+			<form method = "POST">
+				{{ comment_form.as_p }}
+		</div>
+	</div>
 {% endblock content %}

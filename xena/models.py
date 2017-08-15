@@ -3,6 +3,8 @@ from django.db import models
 
 class UserProfile(models.Model):
 	userprofile = models.OneToOneField(User)
+	firstname = models.CharField(max_length=100)
+	lastname = models.CharField(max_length =100)
 	mobile = models.IntegerField()
 	address = models.CharField(max_length = 300)
 	family_member = models.IntegerField()

@@ -14,7 +14,7 @@ def log_in(request):
 			username = form.get_user()
 			login(request,username)
 			print type(username)
-			return redirect('xena:home')
+			return redirect('xena:infofill')
 	else:
 		return render(request,'xena/login.html',{'form':form})
 
@@ -47,11 +47,20 @@ def info_save(request):
 		form = UserProfileForm(data = request.POST)
 		if form.is_valid():
 			q = User.objects.get(username = request.user.username)
-			q.save(commit = False)
-			q.userprofile_set.create(mobile = form.cleaned_data('mobile'),address = form.cleaned_data('address'),family_member = form.cleaned_data('family_member'), family_children = form.cleaned_data('family_children'))
-			return render(request,'xena/user.html')
+			r = UserProfile(userprofile = q,firstname = form.cleaned_data['firstname'],lastname = form.cleaned_data['lastname'],mobile = form.cleaned_data['mobile'],address = form.cleaned_data['address'],family_member = form.cleaned_data['family_member'], family_children = form.cleaned_data['family_children'])	
+			r.save()	
+			return redirect('xena:infofill')
 	else:
 		return render(request,'xena/home.html',{'form':form})
+
+
+def info_fill(request):
+	q = User.objects.get(username = request.user.username)
+	r = UserProfile.objects.get(userprofile = q)
+	view_form = ViewForm()
+	comment_form = CommentForm()
+	view = View.objects.all()
+	return render(request,'xena/user.html',{'user':r,'views':view,'view_form':view_form,'comment_form':comment_form})
 	
 
 def log_out(request):
