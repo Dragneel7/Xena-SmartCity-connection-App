@@ -9,11 +9,11 @@ class UserProfile(models.Model):
 	address = models.CharField(max_length = 300)
 	family_member = models.IntegerField()
 	family_children = models.IntegerField()
-
+	
 class View(models.Model):
 	userview = models.ForeignKey(User,related_name = 'views') 
 	view = models.CharField(max_length = 200)
-	
+	comments = models.ManyToManyField(User,through='Comment')
 	def __unicode__(self):
 		return self.view
 
@@ -25,12 +25,22 @@ class Comment(models.Model):
 	def __unicode__(self):
 		return self.comment
 
+class Organisation(models.Model):
+	org_name = models.CharField(max_length=100)
+	org_desc = models.CharField(max_length=500)
+
+class Tag(models.Model):
+	org_tag = models.ForeignKey(Organisation,related_name='tag')
+	tag_name = models.CharField(max_length=50)
+	
+
+"""
 class Vote(models.Model):
 	uservote = models.ForeignKey(User)
 	vote_view = models.OneToOneField(View)
 	comment = models.BooleanField(default = False)
 
-
+"""
 
 
 
