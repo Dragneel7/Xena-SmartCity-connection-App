@@ -17,3 +17,14 @@ class OrganisationAdmin(admin.ModelAdmin):
 
 admin.site.register(Organisation,OrganisationAdmin)
 
+class CommentInline(admin.StackedInline):
+    model = Comment
+    extra = 3
+
+
+class ViewAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['view']}),]
+    inlines = [CommentInline]
+
+admin.site.register(View, ViewAdmin)

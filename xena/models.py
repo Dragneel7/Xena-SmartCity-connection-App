@@ -9,6 +9,8 @@ class UserProfile(models.Model):
 	address = models.CharField(max_length = 300)
 	family_member = models.IntegerField()
 	family_children = models.IntegerField()
+	def __unicode__(self):
+		return self.firstname
 	
 class View(models.Model):
 	userview = models.ForeignKey(User,related_name = 'views') 
@@ -28,6 +30,8 @@ class Comment(models.Model):
 class Organisation(models.Model):
 	org_name = models.CharField(max_length=100)
 	org_desc = models.CharField(max_length=500)
+	def __unicode__(self):
+		return self.org_name
 
 class Tag(models.Model):
 	org_tag = models.ForeignKey(Organisation,related_name='tag')
