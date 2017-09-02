@@ -23,7 +23,7 @@ class Comment(models.Model):
 	usercomment = models.ForeignKey(User)
 	comment_view = models.ForeignKey(View)
 	comment = models.CharField(max_length = 200)
-
+	
 	def __unicode__(self):
 		return self.comment
 

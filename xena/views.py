@@ -48,9 +48,10 @@ def info_fill(request):
 	view_form = ViewForm()
 	comment_form = CommentForm()
 	view = View.objects.all()
+
 	print view
-	content ={'user':r,'views':view,'view_form':view_form,'comment_form':comment_form}
-	print content.views
-	return render(request,'xena/user.html',content)
+	context ={'user':r,'views':view,'view_form':view_form,'comment_form':comment_form}
+	
+	return render(request,'xena/user.html',context)
 	
 
