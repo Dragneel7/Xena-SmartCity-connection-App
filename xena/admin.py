@@ -19,12 +19,12 @@ admin.site.register(Organisation,OrganisationAdmin)
 
 class CommentInline(admin.StackedInline):
     model = Comment
-    extra = 3
+    extra = 2
 
 
 class ViewAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['view']}),]
+        (None,               {'fields': ['view','userview']}),]
     inlines = [CommentInline]
 
 admin.site.register(View, ViewAdmin)

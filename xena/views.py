@@ -6,20 +6,6 @@ from django.contrib.auth.models import User
 from .forms import *
 from django.contrib.auth.decorators import login_required
 
-"""
-def log_in(request):
-	form = AuthenticationForm()
-	if request.method == "POST":
-		form  = AuthenticationForm(data = request.POST)
-		if form.is_valid():
-			username = form.get_user()
-			login(request,username)
-			print type(username)
-			return redirect('xena:infofill')
-	else:
-		return render(request,'xena/login.html',{'form':form})
-"""
-
 def sign_up(request):
 	form = UserCreationForm()
 	if request.method == "POST":
@@ -62,13 +48,9 @@ def info_fill(request):
 	view_form = ViewForm()
 	comment_form = CommentForm()
 	view = View.objects.all()
-	return render(request,'xena/user.html',{'user':r,'views':view,'view_form':view_form,'comment_form':comment_form})
+	print view
+	content ={'user':r,'views':view,'view_form':view_form,'comment_form':comment_form}
+	print content.views
+	return render(request,'xena/user.html',content)
 	
 
-"""
-def log_out(request):
-	logout(request)
-	form = AuthenticationForm()
-	return render(request,'xena/login.html',{'form':form})
-
-"""

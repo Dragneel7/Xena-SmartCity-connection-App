@@ -5,13 +5,14 @@
 	<img src = "{% static "xena/user.jpg" %}" alt = "User Profile Photo" />
 	<a href = "{% url 'xena:logout' %}">Logout</a>
 	<div class = "user-info">
-		{{ user.firstname }} {{ user.lastname}}
-		{{ user.address }}		
+		{{ content.user.firstname }} {{ content.user.lastname}}
+		{{ content.user.address }}		
 	</div>
 	<div class  = "common-feeds">
 		<ul>
 			{% for view in views %}
-				<li>{{ view }}</li>
+				<li>{{ content.views }}</li>
+				<li>{{ content.views.comment.all }}</li>
 			{% endfor %}
 		</ul>
 	</div>
