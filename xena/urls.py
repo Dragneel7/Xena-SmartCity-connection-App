@@ -13,5 +13,8 @@ urlpatterns = [
 	url(r'^user_E/$',views.info_fill,name = "infofill"),
 	url(r'^comment_save/$',views.comment_save,name="comment_save"),
 	url(r'^view_save/$',views.view_save, name="view_save"),
-	url(r'^query/$',views.query,name="query")
+	url(r'^query/$',views.query,name="query"),
+	url(r'^point/$',views.points,name="points"),
+	url(r'^org/$',views.org,name="org_template"),
+	url(r'^query-check/$',views.query_check,name='query_check')
 ]

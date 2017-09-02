@@ -10,9 +10,21 @@
 	
 		<ul>
 			{% for org in organisation %}
-				<li><a href="{% url 'xena:query' %}">{{ org.org_name }}</a></li>
+				<li onclick='fun("{{ org.org_name }}")' style="cursor:pointer">{{ org.org_name }}</li>
 			{% endfor %}	
 		</ul>
-		
+		<!-- make ajax request -->
+		<script type="text/javascript">
+			function fun(org){
+				console.log(org);
+				text = org;
+				var args = {'text': text};
+
+        $http.get("/org/", args).done(function(data) {
+            console.log("message: " + data);
+        });
+			}
+
+		</script>
 
 {% endblock content %}

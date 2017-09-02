@@ -5,9 +5,10 @@
 	<img src = "{% static "xena/user.jpg" %}" alt = "User Profile Photo" />
 	<a href = "{% url 'xena:logout' %}">Logout</a>
 	<a href = "{% url 'xena:query' %}">QueryPoint</a>
+	<a href = "{% url 'xena:points' %}">RedeemPoint</a>
 	<div class = "user-info">
-		{{ content.user.firstname }} {{ content.user.lastname}}
-		{{ content.user.address }}		
+		{{ user.firstname }} {{ user.lastname}}
+		{{ user.address }}		
 	</div>
 	<div class  = "common-feeds">
 		<ul>

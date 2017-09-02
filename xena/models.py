@@ -38,6 +38,10 @@ class Tag(models.Model):
 	tag_name = models.CharField(max_length=50)
 	
 
+class Org_query(models.Model):
+	org_name = models.ForeignKey(Organisation)
+	org_query = models.CharField(max_length=200)
+
 """
 class Vote(models.Model):
 	uservote = models.ForeignKey(User)

@@ -84,3 +84,18 @@ def query(request):
 	organisation =Organisation.objects.all()
 	print organisation
 	return render(request,'xena/query.html',{'organisation':organisation})
+
+def points(request):
+	return render(request,'xena/points.html',{'user':request.user})	
+
+def org(request):
+	org = request.GET.get('text')
+	print org
+	return render(request,'xena/org_template.html',{})	
+
+
+def query_check(request):
+	form = Org_queryForm()
+	if request.method == "POST":
+		form = Org_queryForm(data=request.POST)
+		tags = Tag.objects.all()
