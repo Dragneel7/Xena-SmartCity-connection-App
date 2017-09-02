@@ -18,17 +18,21 @@
 				
 				{% endfor %}	
 				</ul>
+			<div class = "community-feeds">
+			<form method = "POST" action="/comment_save/" >{% csrf_token %}
+			<input type=text name="comment_view" value="{{view.id}}" style="display:none;"></input>	
+			<input type=text name="comment"></input>	
+	<button type="submit">Comment</button></form>		
+</div>
+	</div>
 			{% endfor %}
 		</ul>
 	</div>
 	<div class = "user-feeds">
 		<div class = "personal-feeds">
-			<form method = "POST">
-				{{ view_form.as_p }}		
-		</div>
-		<div class = "community-feeds">
-			<form method = "POST">
-				{{ comment_form.as_p }}
-		</div>
+			<form method = "POST" action="view_save">{% csrf_token %}
+				{{ view_form.as_p }}					<button type="submit">Add View </button>	
+	</form>	
 	</div>
+	
 {% endblock content %}

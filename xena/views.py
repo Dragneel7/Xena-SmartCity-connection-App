@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 def sign_up(request):
 	form = UserCreationForm()
@@ -55,3 +56,14 @@ def info_fill(request):
 	return render(request,'xena/user.html',context)
 	
 
+def comment_save(request):
+	form = CommentForm()
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			commentobj = Comment.objects.create(
+				usercomment = request.user,
+				comment_view = form.cleaned_data['comment_view'],
+				comment = form.cleaned_data['comment']
+			)
+		return HttpResponseRedirect(reverse('xena:infofill'))
