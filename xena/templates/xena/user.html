@@ -11,12 +11,13 @@
 	<div class  = "common-feeds">
 		<ul>
 			{% for view in views %}
-				<li>{{ view }}</li>
+				<li>{{view.userview  }} : {{ view }}</li>
 				<ul>
-				{% for comment in view.comments.comment.all %}
-					<li> {{ comment }} </li>
-				</ul>
+				{% for comment in view.comment_set.all %}
+					<li> {{ comment.usercomment }} : {{ comment }} </li>
+				
 				{% endfor %}	
+				</ul>
 			{% endfor %}
 		</ul>
 	</div>
