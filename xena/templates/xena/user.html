@@ -4,6 +4,7 @@
 	<script src="{% static "xena/home.js" %}"></script>
 	<img src = "{% static "xena/user.jpg" %}" alt = "User Profile Photo" />
 	<a href = "{% url 'xena:logout' %}">Logout</a>
+	<a href = "{% url 'xena:query' %}">QueryPoint</a>
 	<div class = "user-info">
 		{{ content.user.firstname }} {{ content.user.lastname}}
 		{{ content.user.address }}		
@@ -30,7 +31,7 @@
 	</div>
 	<div class = "user-feeds">
 		<div class = "personal-feeds">
-			<form method = "POST" action="view_save">{% csrf_token %}
+			<form method = "POST" action="/view_save/">{% csrf_token %}
 				{{ view_form.as_p }}					<button type="submit">Add View </button>	
 	</form>	
 	</div>

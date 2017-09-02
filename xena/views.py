@@ -67,3 +67,20 @@ def comment_save(request):
 				comment = form.cleaned_data['comment']
 			)
 		return HttpResponseRedirect(reverse('xena:infofill'))
+
+def view_save(request):
+	form = ViewForm()
+	if request.method == "POST":
+		form = ViewForm(data=request.POST)
+		if form.is_valid():
+			print "check" + form.cleaned_data['view']
+			viewobj = View.objects.create(
+					userview = request.user,
+					view = form.cleaned_data['view']
+				)	
+		return HttpResponseRedirect(reverse('xena:infofill'))	
+
+def query(request):
+	organisation =Organisation.objects.all()
+	print organisation
+	return render(request,'xena/query.html',{'organisation':organisation})
