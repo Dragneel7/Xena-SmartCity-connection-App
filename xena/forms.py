@@ -20,6 +20,7 @@ class CommentForm(forms.ModelForm):
 		model = Comment
 		fields = ('comment','comment_view')			
 class Org_queryForm(forms.ModelForm):
+	org_query = forms.CharField(required=False)
 	class Meta:
 		model = Org_query
 		fields = ('org_query',)

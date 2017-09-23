@@ -7,6 +7,7 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from scoring import *
+from django.db.models import Q
 
 def sign_up(request):
 	form = UserCreationForm()
@@ -100,6 +101,28 @@ def org(request):
 	
 def query_check(request):
 	form = Org_queryForm()
+	print request.method
 	if request.method == "POST":
-		form = Org_queryForm(data=request.POST)
-		tags = Tag.objects.all()
+		
+		form = Org_queryForm(request.POST)
+		print form.is_valid()
+		if form.is_valid():
+			query = form.data['query_field']
+			item = Organisation.objects.filter(Q(org_name__icontains=query))
+			if item:
+				#means the user knows the place take the user to the desired
+				return render(request,'xena/org_template.html',{'org':item[0]})
+			if not item:
+				item = Organisation.objects.filter(tags__name__in=[query])
+				if item:
+					#code to save the query goes here
+					#and return to the query page
+					query_object = Org_query.objects.create(org_name=item[0],org_query=query)
+					print "what"
+					return HttpResponse(item)
+			if not item:
+				#search for desc goes here if found return	
+				
+				return HttpResponse(item)
+			print query
+			

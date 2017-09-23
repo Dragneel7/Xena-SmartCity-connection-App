@@ -16,5 +16,5 @@ urlpatterns = [
 	url(r'^query/$',views.query,name="query"),
 	url(r'^point/$',views.points,name="points"),
 	url(r'^org/$',views.org,name="org_template"),
-	url(r'^query-check/$',views.query_check,name='query_check')
+	url(r'^query_check/$',views.query_check,name='query_check')
 ]
