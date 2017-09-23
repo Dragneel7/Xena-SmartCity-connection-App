@@ -1,11 +1,12 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,render_to_response
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .forms import *
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
+from scoring import *
 
 def sign_up(request):
 	form = UserCreationForm()
@@ -88,12 +89,15 @@ def query(request):
 def points(request):
 	return render(request,'xena/points.html',{'user':request.user})	
 
+from django.template.loader import render_to_string
+
 def org(request):
-	org = request.GET.get('text')
+	org = request.GET.get('org')
+	print request.method
 	print org
-	return render(request,'xena/org_template.html',{})	
-
-
+	org_object = Organisation.objects.get(org_name=org)
+	return render(request,'xena/org_template.html',{'org':org_object})
+	
 def query_check(request):
 	form = Org_queryForm()
 	if request.method == "POST":

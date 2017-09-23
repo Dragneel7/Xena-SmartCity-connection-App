@@ -17,12 +17,17 @@
 		<script type="text/javascript">
 			function fun(org){
 				console.log(org);
-				text = org;
-				var args = {'text': text};
-
-        $http.get("/org/", args).done(function(data) {
-            console.log("message: " + data);
-        });
+				
+ $.ajax({
+        url: '/org/',
+        data: {
+          'org':org
+        },
+        dataType: 'json',
+        success: function (data) {
+          alert("hello");
+        }
+      });
 			}
 
 		</script>

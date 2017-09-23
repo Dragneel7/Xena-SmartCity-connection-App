@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'xena',
+    'taggit',
   #  'socket_server',
   #  'channels',
 )

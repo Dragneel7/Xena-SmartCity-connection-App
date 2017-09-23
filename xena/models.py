@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from taggit.managers import TaggableManager
 
 class UserProfile(models.Model):
 	userprofile = models.OneToOneField(User)
@@ -29,13 +30,12 @@ class Comment(models.Model):
 
 class Organisation(models.Model):
 	org_name = models.CharField(max_length=100)
+	tags = TaggableManager() 
 	org_desc = models.CharField(max_length=500)
 	def __unicode__(self):
 		return self.org_name
 
-class Tag(models.Model):
-	org_tag = models.ForeignKey(Organisation,related_name='tag')
-	tag_name = models.CharField(max_length=50)
+
 	
 
 class Org_query(models.Model):
